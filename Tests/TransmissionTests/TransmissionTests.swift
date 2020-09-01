@@ -1,15 +1,47 @@
 import XCTest
+import Foundation
 @testable import Transmission
 
-final class TransmissionTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Transmission().text, "Hello, World!")
+final class TransmissionTests: XCTestCase
+{
+    public func testConnection()
+    {
+        let lock = DispatchGroup()
+        let queue = DispatchQueue(label: "testing")
+        
+        lock.enter()
+        
+        queue.async
+        {
+            self.runServer(lock)
+        }
+        
+        lock.wait()
+        
+        runClient()
     }
+    
+    func runServer(_ lock: DispatchGroup)
+    {
+        guard let listener = Listener(port: 1234) else {return}
+        lock.leave()
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+        let connection = listener.accept()
+        let _ = connection.read(size: 4)
+        let _ = connection.write(string: "back")
+    }
+    
+    func runClient()
+    {
+        let connection = Connection(host: "127.0.0.1", port: 1234)
+        XCTAssertNotNil(connection)
+        
+        let writeResult = connection!.write(string: "test")
+        XCTAssertTrue(writeResult)
+        
+        let result = connection!.read(size: 4)
+        XCTAssertNotNil(result)
+        
+        XCTAssertEqual(result!, "back")
+    }
 }
