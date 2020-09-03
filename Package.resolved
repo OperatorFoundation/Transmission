@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Socket",
+        "repositoryURL": "https://github.com/OperatorFoundation/BlueSocket",
+        "state": {
+          "branch": null,
+          "revision": "90212ea8b66787c2d51d03527a04748ba6ee7679",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "Chord",
+        "repositoryURL": "https://github.com/OperatorFoundation/Chord",
+        "state": {
+          "branch": null,
+          "revision": "3d0189b4f6e71441d82c577c0f583fceace47684",
+          "version": "0.0.5"
+        }
+      },
+      {
+        "package": "Datable",
+        "repositoryURL": "https://github.com/OperatorFoundation/Datable",
+        "state": {
+          "branch": null,
+          "revision": "1c23f2b72d0d0cf4386fad05f8a5db4b91e8d304",
+          "version": "3.0.2"
+        }
+      },
+      {
+        "package": "SwiftQueue",
+        "repositoryURL": "https://github.com/OperatorFoundation/SwiftQueue",
+        "state": {
+          "branch": null,
+          "revision": "0e5979acbb104516a427bb2bb09debc50ca100b4",
+          "version": "0.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
