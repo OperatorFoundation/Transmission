@@ -11,6 +11,9 @@ let package = Package(
         .library(
             name: "Transmission",
             targets: ["Transmission"]),
+        .library(
+            name: "TransmissionLinux",
+            targets: ["TransmissionLinux"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
