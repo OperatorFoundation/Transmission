@@ -9,16 +9,22 @@ public class Connection
     var readLock = DispatchGroup()
     var writeLock = DispatchGroup()
 
-    public convenience init?(host: String, port: Int)
+    public convenience init?(host: String, port: Int, type: ConnectionType = .tcp)
     {
         let nwhost = NWEndpoint.Host(host)
         
         let port16 = UInt16(port)
         let nwport = NWEndpoint.Port(integerLiteral: port16)
         
-        let nwconnection = NWConnection(host: nwhost, port: nwport, using: .tcp)
-        
-        self.init(connection: nwconnection)
+        switch type
+        {
+            case .tcp:
+                let nwconnection = NWConnection(host: nwhost, port: nwport, using: .tcp)
+                self.init(connection: nwconnection)
+            case .udp:
+                let nwconnection = NWConnection(host: nwhost, port: nwport, using: .udp)
+                self.init(connection: nwconnection)
+        }
     }
     
     init?(connection: NWConnection)
@@ -115,4 +121,10 @@ public class Connection
         
         return success
     }
+}
+
+public enum ConnectionType
+{
+    case udp
+    case tcp
 }

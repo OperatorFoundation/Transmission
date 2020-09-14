@@ -67,3 +67,9 @@ public class Connection
         return true
     }
 }
+
+public enum ConnectionType
+{
+    case udp
+    case tcp
+}
