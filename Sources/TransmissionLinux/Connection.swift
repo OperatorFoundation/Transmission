@@ -43,24 +43,23 @@ public class Connection
         
         do
         {
-            let _ = try self.socket.read(into: &data)
+            let bytesRead = try self.socket.read(into: &data)
+            buffer.append(data[0..<bytesRead])
+
+            guard size <= buffer.count else
+            {
+                return nil
+            }
+
+            let result = buffer[0..<size]
+            buffer = buffer[size..<buffer.count]
+
+            return result
         }
         catch
         {
             return nil
         }
-
-        buffer.append(data)
-
-        if size > buffer.count
-        {
-            return nil
-        }
-
-        let result = buffer[0..<size]
-        buffer = buffer[size..<buffer.count]
-        
-        return result
     }
     
     public func write(string: String) -> Bool
