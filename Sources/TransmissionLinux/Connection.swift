@@ -47,7 +47,7 @@ public class Connection
         {
             let bytesRead = try self.socket.read(into: &data)
             print("3")
-            buffer.append(data[0..<bytesRead])
+            buffer.append(Data(data[0..<bytesRead]))
             print("4")
 
             guard size <= buffer.count else
@@ -59,9 +59,9 @@ public class Connection
             print(buffer.count)
             print(size)
 
-            let result = buffer[0..<size]
+            let result = Data(buffer[0..<size])
             print("6")
-            buffer = buffer[size..<buffer.count]
+            buffer = Data(buffer[size..<buffer.count])
             print("7")
 
             return result
