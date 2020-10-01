@@ -10,6 +10,7 @@ public class Connection
     var writeLock = DispatchGroup()
 
     let socket: Socket
+    var buffer: Data = Data()
 
     public init?(host: String, port: Int)
     {
@@ -38,7 +39,7 @@ public class Connection
             return nil
         }
 
-        var data = Data(count: size)
+        var data = Data()
         
         do
         {
@@ -48,8 +49,18 @@ public class Connection
         {
             return nil
         }
+
+        buffer.append(data)
+
+        if size > buffer.count
+        {
+            return nil
+        }
+
+        let result = buffer[0..<size]
+        buffer = buffer[size..<buffer.count]
         
-        return data
+        return result
     }
     
     public func write(string: String) -> Bool
