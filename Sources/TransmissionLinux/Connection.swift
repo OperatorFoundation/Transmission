@@ -55,6 +55,9 @@ public class Connection
                 return nil
             }
             print("5")
+            print(buffer)
+            print(buffer.count)
+            print(size)
 
             let result = buffer[0..<size]
             print("6")
