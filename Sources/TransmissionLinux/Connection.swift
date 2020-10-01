@@ -33,7 +33,7 @@ public class Connection
     
     public func read(size: Int) -> Data?
     {
-        var data = Data()
+        var data = Data(count: size)
         
         do
         {
