@@ -34,25 +34,32 @@ public class Connection
     
     public func read(size: Int) -> Data?
     {
+        print("1")
         if size == 0
         {
             return nil
         }
 
         var data = Data()
-        
+        print("2")
+
         do
         {
             let bytesRead = try self.socket.read(into: &data)
+            print("3")
             buffer.append(data[0..<bytesRead])
+            print("4")
 
             guard size <= buffer.count else
             {
                 return nil
             }
+            print("5")
 
             let result = buffer[0..<size]
+            print("6")
             buffer = buffer[size..<buffer.count]
+            print("7")
 
             return result
         }
