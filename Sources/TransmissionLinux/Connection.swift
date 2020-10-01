@@ -33,6 +33,11 @@ public class Connection
     
     public func read(size: Int) -> Data?
     {
+        if size == 0
+        {
+            return nil
+        }
+
         var data = Data(count: size)
         
         do
