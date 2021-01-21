@@ -45,13 +45,13 @@ public class Connection
                     self.connectLock.leave()
                     return
                 case .cancelled:
-                    self.connectLock.leave()
+                    self.failConnect()
                     return
                 case .failed(_):
-                    self.connectLock.leave()
+                    self.failConnect()
                     return
-                case .waiting(let error):
-                    self.connectLock.leave()
+                case .waiting(_):
+                    self.failConnect()
                     return
                 default:
                     return
@@ -63,6 +63,13 @@ public class Connection
         connectLock.wait()
 
         guard success else {return nil}
+    }
+
+    func failConnect()
+    {
+        self.connection.stateUpdateHandler = nil
+        self.connection.cancel()
+        self.connectLock.leave()
     }
     
     public func read(size: Int) -> Data?
