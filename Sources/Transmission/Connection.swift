@@ -50,6 +50,9 @@ public class Connection
                 case .failed(_):
                     self.connectLock.leave()
                     return
+                case .waiting(let error):
+                    self.connectLock.leave()
+                    return
                 default:
                     return
             }
