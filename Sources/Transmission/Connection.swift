@@ -5,7 +5,7 @@ import Transport
 
 public class Connection
 {
-    var connection: NWConnection
+    var connection: Transport.Connection
     var connectLock = DispatchGroup()
     var readLock = DispatchGroup()
     var writeLock = DispatchGroup()
@@ -28,14 +28,14 @@ public class Connection
         }
     }
     
-    init?(connection: NWConnection)
+    convenience init?(connection: NWConnection)
     {
-      return self.init(transport: connection)
+        self.init(transport: connection)
     }
 
     init?(transport: Transport.Connection)
     {
-        self.connection = connection
+        self.connection = transport
 
         var success = false
 
@@ -117,7 +117,7 @@ public class Connection
         var success = false
         
         self.writeLock.enter()
-        self.connection.send(content: data, completion: NWConnection.SendCompletion.contentProcessed(
+        self.connection.send(content: data, contentContext: NWConnection.ContentContext.defaultMessage, isComplete: false, completion: NWConnection.SendCompletion.contentProcessed(
         {
             (maybeError) in
                 
