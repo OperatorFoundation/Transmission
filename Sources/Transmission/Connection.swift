@@ -1,6 +1,7 @@
 import Foundation
 import Network
 import Datable
+import Transport
 
 public class Connection
 {
@@ -28,6 +29,11 @@ public class Connection
     }
     
     init?(connection: NWConnection)
+    {
+      return self.init(transport: connection)
+    }
+
+    init?(transport: Transport.Connection)
     {
         self.connection = connection
 
