@@ -28,12 +28,12 @@ public class Connection
         }
     }
     
-    convenience init?(connection: NWConnection)
+    public convenience init?(connection: NWConnection)
     {
         self.init(transport: connection)
     }
 
-    init?(transport: Transport.Connection)
+    public init?(transport: Transport.Connection)
     {
         self.connection = transport
 
