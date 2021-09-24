@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.12"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.0.6"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.6"),
@@ -24,7 +25,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "Transmission",
-            dependencies: ["Chord", "Datable", "Transport"]),
+            dependencies: ["Chord", "Datable", "Transport", .product(name: "Logging", package: "swift-log")]
+        ),
         .testTarget(
             name: "TransmissionTests",
             dependencies: ["Transmission", "Datable"]),

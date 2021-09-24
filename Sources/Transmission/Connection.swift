@@ -2,6 +2,7 @@ import Foundation
 import Network
 import Datable
 import Transport
+import Logging
 
 public class Connection
 {
@@ -9,11 +10,12 @@ public class Connection
     var connectLock = DispatchGroup()
     var readLock = DispatchGroup()
     var writeLock = DispatchGroup()
+    let log: Logger?
 
-    public convenience init?(host: String, port: Int, type: ConnectionType = .tcp)
+    public convenience init?(host: String, port: Int, type: ConnectionType = .tcp, logger: Logger? = nil)
     {
-        let nwhost = NWEndpoint.Host(host)
         
+        let nwhost = NWEndpoint.Host(host)
         let port16 = UInt16(port)
         let nwport = NWEndpoint.Port(integerLiteral: port16)
         
@@ -21,20 +23,23 @@ public class Connection
         {
             case .tcp:
                 let nwconnection = NWConnection(host: nwhost, port: nwport, using: .tcp)
-                self.init(connection: nwconnection)
+                self.init(connection: nwconnection, logger: logger)
             case .udp:
                 let nwconnection = NWConnection(host: nwhost, port: nwport, using: .udp)
-                self.init(connection: nwconnection)
+                self.init(connection: nwconnection, logger: logger)
         }
     }
     
-    public convenience init?(connection: NWConnection)
+    public convenience init?(connection: NWConnection, logger: Logger? = nil)
     {
-        self.init(transport: connection)
+        self.init(transport: connection, logger: logger)
     }
 
-    public init?(transport: Transport.Connection)
+    public init?(transport: Transport.Connection, logger: Logger? = nil)
     {
+        self.log = logger
+        maybeLog(message: "Initializing Transmission connection", logger: self.log)
+        
         self.connection = transport
 
         var success = false
@@ -73,6 +78,7 @@ public class Connection
 
     func failConnect()
     {
+        maybeLog(message: "Failed to make a Transmission connection", logger: self.log)
         self.connection.stateUpdateHandler = nil
         self.connection.cancel()
         self.connectLock.leave()
@@ -80,6 +86,7 @@ public class Connection
     
     public func read(size: Int) -> Data?
     {
+        maybeLog(message: "Transmission read called", logger: self.log)
         var result: Data?
         
         self.readLock.enter()
@@ -103,6 +110,8 @@ public class Connection
         
         readLock.wait()
         
+        maybeLog(message: "Transmission read finished!", logger: self.log)
+        
         return result
     }
     
@@ -114,6 +123,7 @@ public class Connection
     
     public func write(data: Data) -> Bool
     {
+        maybeLog(message: "Transmission write called", logger: self.log)
         var success = false
         
         self.writeLock.enter()
@@ -135,6 +145,8 @@ public class Connection
         
         self.writeLock.wait()
         
+        maybeLog(message: "Transmission write finished", logger: self.log)
+        
         return success
     }
 }
@@ -143,4 +155,12 @@ public enum ConnectionType
 {
     case udp
     case tcp
+}
+
+public func maybeLog(message: String, logger: Logger? = nil) {
+    if logger != nil {
+        logger!.debug("\(message)")
+    } else {
+        print(message)
+    }
 }
