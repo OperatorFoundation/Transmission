@@ -90,6 +90,7 @@ public class Connection
         var result: Data?
         
         self.readLock.enter()
+        maybeLog(message: "Transmission read's connection.receive type: \(type(of: self.connection))", logger: self.log)
         self.connection.receive(minimumIncompleteLength: size, maximumLength: size)
         {
             (maybeData, maybeContext, isComplete, maybeError) in
