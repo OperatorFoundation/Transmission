@@ -90,13 +90,16 @@ public class Connection
         var result: Data?
         
         self.readLock.enter()
-        maybeLog(message: "Transmission read's connection.receive type: \(type(of: self.connection))", logger: self.log)
+        maybeLog(message: "Transmission read's connection.receive type: \(type(of: self.connection)) size: \(size)", logger: self.log)
         self.connection.receive(minimumIncompleteLength: size, maximumLength: size)
         {
             (maybeData, maybeContext, isComplete, maybeError) in
             
+            maybeLog(message: "entered Transmission read's receive callback", logger: self.log)
+            
             guard maybeError == nil else
             {
+                maybeLog(message: "leaving Transmission read's receive callback with error: \(String(describing: maybeError))", logger: self.log)
                 self.readLock.leave()
                 return
             }
@@ -105,6 +108,8 @@ public class Connection
             {
                 result = data
             }
+            
+            maybeLog(message: "leaving Transmission read's receive callback", logger: self.log)
             
             self.readLock.leave()
         }
