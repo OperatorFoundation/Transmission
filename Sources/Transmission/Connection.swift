@@ -84,6 +84,7 @@ public class Connection
         self.connectLock.leave()
     }
     
+    // Reads exactly size bytes
     public func read(size: Int) -> Data?
     {
         maybeLog(message: "Transmission read called", logger: self.log)
@@ -92,6 +93,44 @@ public class Connection
         self.readLock.enter()
         maybeLog(message: "Transmission read's connection.receive type: \(type(of: self.connection)) size: \(size)", logger: self.log)
         self.connection.receive(minimumIncompleteLength: size, maximumLength: size)
+        {
+            (maybeData, maybeContext, isComplete, maybeError) in
+            
+            maybeLog(message: "entered Transmission read's receive callback", logger: self.log)
+            
+            guard maybeError == nil else
+            {
+                maybeLog(message: "leaving Transmission read's receive callback with error: \(String(describing: maybeError))", logger: self.log)
+                self.readLock.leave()
+                return
+            }
+            
+            if let data = maybeData
+            {
+                result = data
+            }
+            
+            maybeLog(message: "leaving Transmission read's receive callback", logger: self.log)
+            
+            self.readLock.leave()
+        }
+        
+        readLock.wait()
+        
+        maybeLog(message: "Transmission read finished!", logger: self.log)
+        
+        return result
+    }
+    
+    // reads up to maxSize bytes
+    public func read(maxSize: Int) -> Data?
+    {
+        maybeLog(message: "Transmission read called", logger: self.log)
+        var result: Data?
+        
+        self.readLock.enter()
+        maybeLog(message: "Transmission read's connection.receive type: \(type(of: self.connection)) maxSize: \(maxSize)", logger: self.log)
+        self.connection.receive(minimumIncompleteLength: 1, maximumLength: maxSize)
         {
             (maybeData, maybeContext, isComplete, maybeError) in
             
