@@ -9,6 +9,8 @@ import Foundation
 import Network
 import Chord
 
+#if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+
 public class Listener
 {
     let listener: NWListener
@@ -49,3 +51,9 @@ public class Listener
         return self.queue.dequeue()
     }
 }
+
+#else
+
+@_exported import TransmissionLinux
+
+#endif

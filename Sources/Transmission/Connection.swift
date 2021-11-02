@@ -4,6 +4,8 @@ import Datable
 import Transport
 import Logging
 
+#if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+
 public class Connection
 {
     var connection: Transport.Connection
@@ -401,3 +403,9 @@ public func maybeLog(message: String, logger: Logger? = nil) {
         print(message)
     }
 }
+
+#else
+
+@_exported import TransmissionLinux
+
+#endif
