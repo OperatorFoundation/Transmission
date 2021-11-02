@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/OperatorFoundation/Chord",
         "state": {
           "branch": null,
-          "revision": "25e5267c7dde0df1f7bcc285979f6302d46f7101",
-          "version": "0.0.12"
+          "revision": "662052b357a1cbb4d3b1c82a304e993e6dee46b0",
+          "version": "0.0.13"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/OperatorFoundation/Datable",
         "state": {
           "branch": null,
-          "revision": "31b055da961f794f1a2ce01b5521ee650815a9c9",
-          "version": "3.0.6"
+          "revision": "59dfd564b1d0e69313cb13ce87adc4ea2281df79",
+          "version": "3.1.1"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/OperatorFoundation/SwiftQueue",
         "state": {
           "branch": null,
-          "revision": "eaa39c586fddb49ad1e0e8b5b3e9b0aaf0b3be82",
-          "version": "0.1.0"
+          "revision": "22f628f3208be8e70c06e9577913e56177c47702",
+          "version": "0.1.1"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/OperatorFoundation/Transport",
         "state": {
           "branch": null,
-          "revision": "91dca4e691a9d2a6d38acd9b6dd64a1240da85f1",
-          "version": "2.3.6"
+          "revision": "a95c7bd870c558a040f9a22a88badab5577bd4df",
+          "version": "2.3.8"
         }
       }
     ]
