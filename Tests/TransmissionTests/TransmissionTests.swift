@@ -23,7 +23,7 @@ final class TransmissionTests: XCTestCase
     
     func runServer(_ lock: DispatchGroup)
     {
-        guard let listener = Listener(port: 1234) else {return}
+        guard let listener = TransmissionListener(port: 1234, logger: nil) else {return}
         lock.leave()
 
         let connection = listener.accept()
@@ -33,7 +33,7 @@ final class TransmissionTests: XCTestCase
     
     func runClient()
     {
-        let connection = Connection(host: "127.0.0.1", port: 1234)
+        let connection = TransmissionConnection(host: "127.0.0.1", port: 1234, logger: nil)
         XCTAssertNotNil(connection)
         
         let writeResult = connection!.write(string: "test")
