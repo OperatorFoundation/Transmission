@@ -8,9 +8,6 @@ import Logging
 
 public protocol Connection
 {
-    init?(host: String, port: Int, type: ConnectionType, logger: Logger?)
-    init?(transport: Transport.Connection, logger: Logger?)
-
     // Reads exactly size bytes
     func read(size: Int) -> Data?
 

@@ -10,6 +10,5 @@ import Logging
 
 public protocol Listener
 {
-    init?(port: Int, type: ConnectionType, logger: Logger?)
     func accept() -> Transmission.Connection
 }
