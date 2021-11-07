@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import Network
 import Chord
 import Logging
 
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+
+import Network
 
 public class TransmissionListener: Listener
 {

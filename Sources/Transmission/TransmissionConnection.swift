@@ -1,11 +1,12 @@
 import Foundation
-import Network
 import Datable
 import Transport
 import Logging
 import SwiftQueue
 
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+
+import Network
 
 public class TransmissionConnection: Transmission.Connection
 {

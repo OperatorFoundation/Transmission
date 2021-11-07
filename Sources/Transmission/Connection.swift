@@ -1,10 +1,11 @@
 import Foundation
-import Network
 import Datable
 import Transport
 import Logging
 
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+
+import Network
 
 public protocol Connection
 {
