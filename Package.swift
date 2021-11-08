@@ -17,7 +17,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.13"),
+        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.14"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.8"),
     ],
@@ -48,7 +48,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.13"),
+        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.14"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.8"),
         .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "0.4.0"),
