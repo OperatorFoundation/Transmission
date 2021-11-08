@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
 let package = Package(
     name: "Transmission",
-    platforms: [.macOS(.v10_15), .iOS(.v14)],
+    platforms: [.macOS(.v10_15)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -17,7 +17,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.14"),
+        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.8"),
     ],
@@ -37,7 +37,7 @@ let package = Package(
 #else
 let package = Package(
     name: "Transmission",
-    platforms: [.macOS(.v10_15), .iOS(.v14)],
+    platforms: [.macOS(.v10_15)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -48,7 +48,7 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.14"),
+        .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.8"),
         .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "0.4.0"),
