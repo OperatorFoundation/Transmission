@@ -1,4 +1,5 @@
 import Foundation
+import Chord
 import Datable
 import Transport
 import Logging
@@ -15,7 +16,8 @@ public class TransmissionConnection: Transmission.Connection
     var readLock = DispatchGroup()
     var writeLock = DispatchGroup()
     let log: Logger?
-    let states: Queue<Bool> = Queue<Bool>()
+    let states: BlockingQueue<Bool> = BlockingQueue<Bool>()
+    let startQueue = DispatchQueue(label: "TransmissionConnection")
 
     public required init?(host: String, port: Int, type: ConnectionType = .tcp, logger: Logger? = nil)
     {
@@ -31,17 +33,17 @@ public class TransmissionConnection: Transmission.Connection
                 let nwconnection = NWConnection(host: nwhost, port: nwport, using: .tcp)
                 self.connection = nwconnection
                 self.connection.stateUpdateHandler = self.handleState
-                self.connection.start(queue: .global())
+                self.connection.start(queue: startQueue)
 
-                guard let success = self.states.dequeue() else {return nil}
+                let success = self.states.dequeue()
                 guard success else {return nil}
             case .udp:
                 let nwconnection = NWConnection(host: nwhost, port: nwport, using: .udp)
                 self.connection = nwconnection
                 self.connection.stateUpdateHandler = self.handleState
-                self.connection.start(queue: .global())
+                self.connection.start(queue: startQueue)
 
-                guard let success = self.states.dequeue() else {return nil}
+                let success = self.states.dequeue()
                 guard success else {return nil}
         }
     }
@@ -55,7 +57,7 @@ public class TransmissionConnection: Transmission.Connection
         self.connection.stateUpdateHandler = self.handleState
         self.connection.start(queue: .global())
 
-        guard let success = self.states.dequeue() else {return nil}
+        let success = self.states.dequeue()
         guard success else {return nil}
     }
 
@@ -64,18 +66,18 @@ public class TransmissionConnection: Transmission.Connection
         switch state
         {
             case .ready:
-                self.states.enqueue(true)
+                self.states.enqueue(element: true)
                 return
             case .cancelled:
-                self.states.enqueue(false)
+                self.states.enqueue(element: false)
                 self.failConnect()
                 return
             case .failed(_):
-                self.states.enqueue(false)
+                self.states.enqueue(element: false)
                 self.failConnect()
                 return
             case .waiting(_):
-                self.states.enqueue(false)
+                self.states.enqueue(element: false)
                 self.failConnect()
                 return
             default:
