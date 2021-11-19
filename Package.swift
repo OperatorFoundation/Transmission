@@ -18,8 +18,8 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
-        .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
-        .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.9"),
+        .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.2"),
+        .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.10"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -49,9 +49,9 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
-        .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.1"),
-        .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.9"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.0"),
+        .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.2"),
+        .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.10"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.1"),
         .package(url: "https://github.com/OperatorFoundation/SwiftQueue", from: "0.1.2")
     ],
     targets: [
