@@ -54,7 +54,7 @@ let package = Package(
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.4"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.11"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.6"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.7"),
         .package(url: "https://github.com/OperatorFoundation/SwiftQueue", from: "0.1.2")
     ],
     targets: [
