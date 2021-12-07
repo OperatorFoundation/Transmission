@@ -16,17 +16,19 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes.git", from: "0.0.1"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.4"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.11"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionMacOS", from: "0.0.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "Transmission",
-            dependencies: ["Chord", "Datable", "Transport", .product(name: "Logging", package: "swift-log")]
+            dependencies: ["TransmissionTypes", "TransmissionMacOS", "Chord", "Datable", "Transport", .product(name: "Logging", package: "swift-log")]
         ),
         .testTarget(
             name: "TransmissionTests",
@@ -47,11 +49,12 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes.git", from: "0.0.1"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Chord", from: "0.0.15"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "3.1.4"),
         .package(url: "https://github.com/OperatorFoundation/Transport", from: "2.3.11"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.5"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionLinux", from: "1.2.6"),
         .package(url: "https://github.com/OperatorFoundation/SwiftQueue", from: "0.1.2")
     ],
     targets: [
@@ -59,7 +62,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "Transmission",
-            dependencies: ["Chord", "Datable", "Transport", "TransmissionLinux", "SwiftQueue", .product(name: "Logging", package: "swift-log")]
+            dependencies: ["TransmissionTypes", "Chord", "Datable", "Transport", "TransmissionLinux", "SwiftQueue", .product(name: "Logging", package: "swift-log")]
         ),
         .testTarget(
             name: "TransmissionTests",
