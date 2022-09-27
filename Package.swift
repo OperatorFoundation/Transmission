@@ -6,9 +6,10 @@ import PackageDescription
 #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
 let package = Package(
     name: "Transmission",
-    platforms: [.macOS(.v10_15),
-                       .iOS(.v15)
-                     ],
+    platforms: [
+        .macOS(.v12),
+        .iOS(.v15)
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
