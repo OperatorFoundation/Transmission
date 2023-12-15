@@ -19,8 +19,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes.git", branch: "release"),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.5.3"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes", branch: "release"),
+        .package(url: "https://github.com/apple/swift-log", from: "1.5.3"),
         .package(url: "https://github.com/OperatorFoundation/Chord", branch: "release"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "4.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Transport", branch: "release"),
@@ -52,8 +52,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes.git", branch: "release"),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.5.3"),
+        .package(url: "https://github.com/OperatorFoundation/TransmissionTypes", branch: "release"),
+        .package(url: "https://github.com/apple/swift-log", from: "1.5.3"),
         .package(url: "https://github.com/OperatorFoundation/Chord", branch: "release"),
         .package(url: "https://github.com/OperatorFoundation/Datable", from: "4.0.0"),
         .package(url: "https://github.com/OperatorFoundation/Transport", branch: "release"),
